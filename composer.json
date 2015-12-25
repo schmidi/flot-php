@@ -1,0 +1,24 @@
+{
+  "name": "schmidi/",
+  "type": "library",
+  "description": "",
+  "repositories": [{
+	  "type": "vcs",
+	  "url": "https://github.com/schmidi"
+  }],
+  "authors": [
+        {
+            "name": "Tobias Schmid",
+            "email": "schmid.tobias@bluewin.ch",
+        }
+    ],
+  "require": {
+        "php": ">=5.5.0",       
+    },
+    "autoload": {     
+        "psr-4": {
+            "Schmidi\\": "src/Schmidi"
+        }
+    },
+	
+}
