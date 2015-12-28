@@ -1,10 +1,10 @@
 {
-  "name": "schmidi/",
+  "name": "schmidi/php-libraries",
   "type": "library",
   "description": "",
   "repositories": [{
 	  "type": "vcs",
-	  "url": "https://github.com/schmidi"
+	  "url": "https://github.com/schmidi/php-libraries/"
   }],
   "authors": [
         {
