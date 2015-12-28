@@ -103,10 +103,9 @@ class FlotGraph
 
         foreach ($options as $option => $value) {
 
-            if(!array_key_exists("option", $this->options)) {
+            if (!array_key_exists('option', $this->options)) {
                 $this->options[$option] = $value;
             }
-
         }
 
         return $this;
@@ -122,7 +121,7 @@ class FlotGraph
 
     }
 
-    public function setTimeAxis($axis = "x", $format = "%d.%m.%Y", $minTickSize = array(1, "day"))
+    public function setTimeAxis($axis = 'x', $format = '%d.%m.%Y', $minTickSize = [1, 'day'])
     {
 
         if (!in_array('time', $this->plugins)) {
@@ -130,26 +129,43 @@ class FlotGraph
         }
         switch ($axis) {
             case 'y':
-                $axis = "yaxis";
+                $axis = 'yaxis';
                 break;
             case 'x':
                 // fallthru
             default:
-                $axis = "xaxis";
+                $axis = 'xaxis';
         }
 
-        $this->addOption($axis,
-            array("mode" => "time",
-                "timeformat" => $format,
-                "minTickSize" => $minTickSize
-            )
-        );
+        $this->options[$axis]['mode'] = 'time';
+        $this->options[$axis]['timeformat'] = $format;
+        $this->options[$axis]['minTickSize'] = $minTickSize;
+
+        return $this;
 
     }
 
     // TODO implement
 
-    public function setLegend() {
+    public function customizeLegend($show = true, $position = 'ne', $margin = [5, 5], $backgroundColor = null,
+                                    $backgroundOpacity = 0.85, $sorted = null, $labelBoxBorder = null)
+    {
+        $this->options['labels']['show'] = $show;
+        $this->options['labels']['position'] = $position;
+        $this->options['labels']['margin'] = $margin;
+
+        if(!is_null($labelBoxBorder)) {
+            $this->options['labels']['labelBoxBorderColor'] = $labelBoxBorder;
+        }
+        if(!is_null($backgroundColor)) {
+            $this->options['labels']['backgroundColor'] = $backgroundColor;
+        }
+        if($backgroundOpacity != 0.85 && 0 <= $backgroundOpacity && $backgroundOpacity < 1) {
+            $this->options['labels']['backgroundOpacity'] = $backgroundOpacity;
+        }
+        if(!is_null($sorted)) {
+            $this->options['labels']['sorted'] = $sorted;
+        }
 
         return $this;
     }

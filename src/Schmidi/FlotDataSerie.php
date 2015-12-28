@@ -13,11 +13,9 @@ class FlotDataSerie
     private $properties = [];
 
 
-    public function __construct($label = "")
+    public function __construct($label = '')
     {
-
         $this->label = $label;
-
     }
 
 
