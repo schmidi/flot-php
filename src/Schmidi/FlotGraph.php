@@ -150,21 +150,21 @@ class FlotGraph
     public function customizeLegend($show = true, $position = 'ne', $margin = [5, 5], $backgroundColor = null,
                                     $backgroundOpacity = 0.85, $sorted = null, $labelBoxBorder = null)
     {
-        $this->options['labels']['show'] = $show;
-        $this->options['labels']['position'] = $position;
-        $this->options['labels']['margin'] = $margin;
+        $this->options['legend']['show'] = $show;
+        $this->options['legend']['position'] = $position;
+        $this->options['legend']['margin'] = $margin;
 
         if(!is_null($labelBoxBorder)) {
-            $this->options['labels']['labelBoxBorderColor'] = $labelBoxBorder;
+            $this->options['legend']['labelBoxBorderColor'] = $labelBoxBorder;
         }
         if(!is_null($backgroundColor)) {
-            $this->options['labels']['backgroundColor'] = $backgroundColor;
+            $this->options['legend']['backgroundColor'] = $backgroundColor;
         }
         if($backgroundOpacity != 0.85 && 0 <= $backgroundOpacity && $backgroundOpacity < 1) {
-            $this->options['labels']['backgroundOpacity'] = $backgroundOpacity;
+            $this->options['legend']['backgroundOpacity'] = $backgroundOpacity;
         }
         if(!is_null($sorted)) {
-            $this->options['labels']['sorted'] = $sorted;
+            $this->options['legend']['sorted'] = $sorted;
         }
 
         return $this;
