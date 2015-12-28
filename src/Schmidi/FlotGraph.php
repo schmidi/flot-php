@@ -221,12 +221,12 @@ class FlotGraph
         $js[] = "$.plot(\"#$this->placeholder\", $flotData, $flotOptions);";
         $js[] = "});";
 
-        $html[] = implode('\n', $css);
+        $html[] = implode("\n", $css);
         $html[] = "<div id=\"". $this->placeholder. "\" class=\"css-". $this->placeholder ."\"></div>";
-        $html[] = "<script type=\"text/javascript\">" . implode('\n', $js) . "</script>";
+        $html[] = "<script type=\"text/javascript\">" . implode("\n", $js) . "</script>";
 
 
-        return implode('\n', $html);
+        return implode("\n", $html);
 
     }
 
