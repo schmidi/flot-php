@@ -170,17 +170,19 @@ class FlotGraph
         return $this;
     }
 
-    public function getAssets()
+    public function getAssets($minimizedFiles = true)
     {
+
+        $fileExtension = $minimizedFiles ? ".min.js" : ".js";
 
         $includeTags = [];
 
-        $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.js");
-        $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.flot.js");
+        $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery" . $fileExtension);
+        $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.flot" . $fileExtension);
 
         foreach ($this->plugins as $plugin) {
 
-            $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.flot." . $plugin . ".js");
+            $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.flot." . $plugin . $fileExtension);
         }
 
         return implode($includeTags, "\n");

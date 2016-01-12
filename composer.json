@@ -4,18 +4,18 @@
   "description": "TBD",
   "license": "GPL-3.0+",
   "authors": [
-        {
-            "name": "Tobias Schmid",
-            "email": "schmid.tobias@bluewin.ch"
-        }
-    ],
-  "require": {
-        "php": ">=5.5.0"      
-    },
-    "autoload": {     
-        "psr-4": {
-            "Schmidi\\": "src/Schmidi"
-        }
+    {
+      "name": "Tobias Schmid",
+      "email": "schmid.tobias@bluewin.ch"
     }
-	
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "phpseclib/phpseclib": "2.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Schmidi\\": "src/Schmidi"
+    }
+  }
 }
