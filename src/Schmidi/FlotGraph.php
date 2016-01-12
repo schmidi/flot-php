@@ -201,6 +201,33 @@ class FlotGraph
     public function drawGraph()
     {
 
+        $css[] = "<style type=\"text/css\">";
+        $css[] = $this->getCssProperties();
+        $css[] = "</style>";
+
+        $html[] = implode("\n", $css);
+        $html[] = "<div id=\"". $this->placeholder. "\" class=\"css-". $this->placeholder ."\"></div>";
+        $html[] = "<script type=\"text/javascript\">" . $this->getJsCode() . "</script>";
+
+
+        return implode("\n", $html);
+
+    }
+
+    public function getCssProperties() {
+
+        $css[] = ".css-$this->placeholder {";
+        foreach ($this->cssStyle as $property => $value) {
+            $css [] = "$property: $value; ";
+        }
+        $css[] = "}";
+
+        return implode("\n", $css);
+
+    }
+
+    public function getJsCode() {
+
         $flotData = "[";
 
         foreach ($this->data as $element) {
@@ -212,25 +239,11 @@ class FlotGraph
 
         $flotOptions = json_encode($this->options);
 
-        $css[] = "<style type=\"text/css\">";
-        $css[] = ".css-$this->placeholder {";
-        foreach ($this->cssStyle as $property => $value) {
-            $css [] = "$property: $value; ";
-        }
-        $css[] = "}";
-        $css[] = "</style>";
-
         $js[] = "flotJQuery(document).ready(function(){";
         $js[] = "flotJQuery.plot(\"#$this->placeholder\", $flotData, $flotOptions);";
         $js[] = "});";
 
-        $html[] = implode("\n", $css);
-        $html[] = "<div id=\"". $this->placeholder. "\" class=\"css-". $this->placeholder ."\"></div>";
-        $html[] = "<script type=\"text/javascript\">" . implode("\n", $js) . "</script>";
-
-
-        return implode("\n", $html);
-
+        return implode("\n", $js);
     }
 
 
