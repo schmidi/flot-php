@@ -41,7 +41,7 @@ class FlotGraph
 
     }
 
-    private function setCssStyle($property, $value)
+    public function setCssStyle($property, $value)
     {
 
         $this->cssStyle[$property] = $value;
