@@ -20,7 +20,7 @@ class FlotGraph
     public function __construct()
     {
 
-        $this->placeholder = substr(uniqid(), 0, 8);
+        $this->placeholder = substr(uniqid(), -8);
         $this->defaultOptions();
 
     }
