@@ -178,6 +178,7 @@ class FlotGraph
         $includeTags = [];
 
         $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery" . $fileExtension);
+        $includeTags[] = '<script type="text/javascript">var flotJQuery = jQuery.noConflict();</script>';
         $includeTags[] = $this->getScriptElement($this->assetPath . "/jquery.flot" . $fileExtension);
 
         foreach ($this->plugins as $plugin) {
@@ -219,8 +220,8 @@ class FlotGraph
         $css[] = "}";
         $css[] = "</style>";
 
-        $js[] = "$(document).ready(function(){";
-        $js[] = "$.plot(\"#$this->placeholder\", $flotData, $flotOptions);";
+        $js[] = "flotJQuery(document).ready(function(){";
+        $js[] = "flotJQuery.plot(\"#$this->placeholder\", $flotData, $flotOptions);";
         $js[] = "});";
 
         $html[] = implode("\n", $css);
