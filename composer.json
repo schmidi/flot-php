@@ -17,5 +17,8 @@
     "psr-4": {
       "Schmidi\\": "src/Schmidi"
     }
+  },
+  "autoload-dev": {
+    "psr-4": { "Schmidi\\Tests\\": "tests/Schmidi" }
   }
 }
