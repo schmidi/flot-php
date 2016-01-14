@@ -168,17 +168,17 @@ class FlotGraph
         return $this;
     }
 
-    public function setXAxisLabels($label, $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    public function setXAxisLabels($label, $color = "#000", $fontSizePixels = 14, $fontFamily = "sans-serif", $padding = 2, $canvas = true)
     {
-        return $this->setAxisLabels($label, 'x', $color, $fontSizePixels, $padding, $canvas);
+        return $this->setAxisLabels($label, 'x', $color, $fontSizePixels, $fontFamily, $padding, $canvas);
     }
 
-    public function setYAxisLabels($label, $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    public function setYAxisLabels($label, $color = "#000", $fontSizePixels = 14, $fontFamily = "sans-serif", $padding = 2, $canvas = true)
     {
-        return $this->setAxisLabels($label, 'y', $color, $fontSizePixels, $padding, $canvas);
+        return $this->setAxisLabels($label, 'y', $color, $fontSizePixels, $fontFamily, $padding, $canvas);
     }
 
-    public function setAxisLabels($label, $axis = 'x', $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    public function setAxisLabels($label, $axis = 'x', $color = "#000", $fontSizePixels = 14, $fontFamily = "sans-serif", $padding = 2, $canvas = true)
     {
         if (!in_array('axislabels', $this->plugins)) {
             $this->plugins[] = 'axislabels';
@@ -187,10 +187,21 @@ class FlotGraph
         $selectedAxis = $axis == 'y' ? "yaxis" : "xaxis";
 
         $this->options[$selectedAxis]['axisLabel'] = $label;
-        $this->options[$selectedAxis]['axisLabelColor'] = $color;
-        $this->options[$selectedAxis]['axisLabelPadding'] = $padding;
-        $this->options[$selectedAxis]['axisLabelFontSizePixels'] = $fontSizePixels;
-        $this->options[$selectedAxis]['axisLabelUseCanvas'] = $canvas;
+        if($color != "#000"){
+            $this->options[$selectedAxis]['axisLabelColour'] = $color;
+        }
+        if($padding != 2) {
+            $this->options[$selectedAxis]['axisLabelPadding'] = $padding;
+        }
+        if ($fontSizePixels != 14) {
+            $this->options[$selectedAxis]['axisLabelFontSizePixels'] = $fontSizePixels;
+        }
+        if($fontFamily != "sans-serif") {
+            $this->options[$selectedAxis]['axisLabelFontFamily'] = $fontFamily;
+        }
+        if (!$canvas) {
+            $this->options[$selectedAxis]['axisLabelUseCanvas'] = $canvas;
+        }
 
         return $this;
     }
