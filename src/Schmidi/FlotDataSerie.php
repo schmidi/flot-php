@@ -105,7 +105,7 @@ class FlotDataSerie
         return $this;
     }
 
-    public function withBars($barWidth = 0, $lineWidth = 0, $align = null)
+    public function withBars($barWidth = 0, $lineWidth = 0, $fillColor = null, $align = null)
     {
 
         $this->properties['lines'] = null;
@@ -118,9 +118,13 @@ class FlotDataSerie
         if ($lineWidth > 0) {
             $this->properties['bars']['lineWidth'] = $lineWidth;
         }
+        if(!is_null($fillColor)){
+            $this->properties['bars']['fillColor'] = $fillColor;
+        }
         if (!is_null($align)) {
             $this->properties['bars']['align'] = $align;
         }
+
 
         return $this;
     }

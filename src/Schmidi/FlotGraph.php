@@ -205,7 +205,7 @@ class FlotGraph
 
         return $this;
     }
-
+    // TODO implement check for file existence
     public function getAssets($minimizedFiles = true)
     {
 
