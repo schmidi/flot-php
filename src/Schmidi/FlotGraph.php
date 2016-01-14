@@ -145,8 +145,6 @@ class FlotGraph
 
     }
 
-    // TODO implement
-
     public function customizeLegend($show = true, $position = 'ne', $margin = [5, 5], $backgroundColor = null,
                                     $backgroundOpacity = 0.85, $sorted = null, $labelBoxBorder = null)
     {
@@ -154,18 +152,45 @@ class FlotGraph
         $this->options['legend']['position'] = $position;
         $this->options['legend']['margin'] = $margin;
 
-        if(!is_null($labelBoxBorder)) {
+        if (!is_null($labelBoxBorder)) {
             $this->options['legend']['labelBoxBorderColor'] = $labelBoxBorder;
         }
-        if(!is_null($backgroundColor)) {
+        if (!is_null($backgroundColor)) {
             $this->options['legend']['backgroundColor'] = $backgroundColor;
         }
-        if($backgroundOpacity != 0.85 && 0 <= $backgroundOpacity && $backgroundOpacity < 1) {
+        if ($backgroundOpacity != 0.85 && 0 <= $backgroundOpacity && $backgroundOpacity < 1) {
             $this->options['legend']['backgroundOpacity'] = $backgroundOpacity;
         }
-        if(!is_null($sorted)) {
+        if (!is_null($sorted)) {
             $this->options['legend']['sorted'] = $sorted;
         }
+
+        return $this;
+    }
+
+    public function setXAxisLabels($label, $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    {
+        return $this->setAxisLabels($label, 'x', $color, $fontSizePixels, $padding, $canvas);
+    }
+
+    public function setYAxisLabels($label, $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    {
+        return $this->setAxisLabels($label, 'y', $color, $fontSizePixels, $padding, $canvas);
+    }
+
+    public function setAxisLabels($label, $axis = 'x', $color = "#000", $fontSizePixels = 12, $padding = 10, $canvas = true)
+    {
+        if (!in_array('axislabels', $this->plugins)) {
+            $this->plugins[] = 'axislabels';
+        }
+
+        $selectedAxis = $axis == 'y' ? "yaxis" : "xaxis";
+
+        $this->options[$selectedAxis]['axisLabel'] = $label;
+        $this->options[$selectedAxis]['axisLabelColor'] = $color;
+        $this->options[$selectedAxis]['axisLabelPadding'] = $padding;
+        $this->options[$selectedAxis]['axisLabelFontSizePixels'] = $fontSizePixels;
+        $this->options[$selectedAxis]['axisLabelUseCanvas'] = $canvas;
 
         return $this;
     }
@@ -206,7 +231,7 @@ class FlotGraph
         $css[] = "</style>";
 
         $html[] = implode("\n", $css);
-        $html[] = "<div id=\"". $this->placeholder. "\" class=\"css-". $this->placeholder ."\"></div>";
+        $html[] = "<div id=\"" . $this->placeholder . "\" class=\"css-" . $this->placeholder . "\"></div>";
         $html[] = "<script type=\"text/javascript\">" . $this->getJsCode() . "</script>";
 
 
@@ -214,7 +239,8 @@ class FlotGraph
 
     }
 
-    public function getCssProperties() {
+    public function getCssProperties()
+    {
 
         $css[] = ".css-$this->placeholder {";
         foreach ($this->cssStyle as $property => $value) {
@@ -226,7 +252,8 @@ class FlotGraph
 
     }
 
-    public function getJsCode() {
+    public function getJsCode()
+    {
 
         $flotData = "[";
 
